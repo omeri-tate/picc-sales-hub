@@ -1,0 +1,925 @@
+<html lang="es"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Acceso Vascular - Taté Medical</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+            color: #1a2a3a;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2d3e50 100%);
+            padding: 20px 0;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            color: #00b4cc;
+            letter-spacing: 1px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* PRODUCT SELECTOR WRAPPER — PRIMARY LEVEL */
+        #productSelectorWrapper {
+            background: rgba(0,180,204,0.10);
+            border-bottom: 2px solid rgba(0,180,204,0.25);
+            padding: 14px 0 !important;
+            margin: 0;
+        }
+
+        .product-selector {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 0;
+            border: none;
+        }
+
+        .product-selector button {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.65);
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .product-selector button.active {
+            color: #00b4cc;
+            border-bottom-color: #00b4cc;
+        }
+
+        .product-selector button:hover {
+            color: white;
+        }
+
+        /* NAV TABS WRAPPER — SECONDARY LEVEL */
+        #navWrapper {
+            background: rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(0,180,204,0.08);
+            padding: 8px 0 !important;
+            margin: 0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin: 0;
+            border: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs button {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            padding: 9px 12px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .nav-tabs button.active {
+            color: #00b4cc;
+            border-bottom-color: #00b4cc;
+        }
+
+        .nav-tabs button:hover {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .nav-tabs button.hidden {
+            display: none;
+        }
+
+        /* LANDING PAGE STYLES */
+        .landing-page {
+            padding: 40px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .landing-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .landing-hero h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1a2a3a;
+        }
+
+        .landing-hero p {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-landing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .product-card-landing {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .product-card-landing:hover {
+            border-color: #00b4cc;
+            box-shadow: 0 8px 16px rgba(0,180,204,0.15);
+            transform: translateY(-4px);
+        }
+
+        .product-card-landing h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a2a3a;
+            margin-bottom: 8px;
+        }
+
+        .product-card-landing p {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .product-card-landing .product-badge {
+            display: inline-block;
+            background: #f0f9fb;
+            color: #00b4cc;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 16px;
+        }
+
+        .product-card-landing .cta {
+            color: #00b4cc;
+            font-weight: 600;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .product-card-landing:hover .cta {
+            gap: 10px;
+        }
+
+        /* PORTAL PAGE STYLES */
+        .portal-page {
+            display: none;
+        }
+
+        .portal-page.active {
+            display: block;
+        }
+
+        .product-selector {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            flex-wrap: wrap;
+        }
+
+        .product-selector button {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            padding: 10px 14px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-selector button.active {
+            color: #00b4cc;
+            border-bottom-color: #00b4cc;
+        }
+
+        .product-selector button:hover {
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: #1a2a3a;
+            border-bottom: 2px solid #00b4cc;
+            padding-bottom: 16px;
+        }
+
+        .placeholder-box {
+            background: #f0f9fb;
+            border: 2px dashed #00b4cc;
+            border-radius: 8px;
+            padding: 40px 24px;
+            text-align: center;
+            color: #6b7280;
+            margin: 32px 0;
+        }
+
+        .placeholder-box h4 {
+            color: #00b4cc;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .placeholder-box p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 24px 0;
+        }
+
+        .specs-table thead {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2d3e50 100%);
+            color: white;
+        }
+
+        .specs-table th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .specs-table td {
+            padding: 12px 16px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        .specs-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: #00b4cc;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0099aa;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #00b4cc;
+            border: 1px solid #00b4cc;
+            margin-left: 8px;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f9fb;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin: 32px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2d3e50 100%);
+            color: white;
+            padding: 32px 24px;
+            margin-top: 48px;
+            text-align: center;
+            border-top: 1px solid rgba(0,180,204,0.2);
+        }
+
+        .footer img {
+            height: 50px;
+            width: auto;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .footer p {
+            margin: 8px 0;
+            font-size: 13px;
+        }
+
+        .footer .tagline {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #00b4cc;
+            font-weight: 600;
+        }
+
+        .footer .contact {
+            font-size: 11px;
+            opacity: 0.6;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+
+            .landing-hero h2 {
+                font-size: 32px;
+            }
+
+            .products-landing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 24px 16px;
+            }
+
+            .nav-tabs,
+            .product-selector {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="https://static.wixstatic.com/media/3e6737_7bdd0c3a8fdc4da9a4701faef3569064~mv2.png/v1/fill/w_127,h_89,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/kudu_4x.png" alt="Taté Medical Logo" style="height: 50px; width: auto;">
+                <div id="headerTitle">
+                    <h1>Portal Acceso Vascular</h1>
+                    <p>Taté Medical — Conectando mercados lucrativos</p>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="downloadHTML()" style="height: fit-content;">
+                <span>⬇</span> Guardar HTML
+            </button>
+        </div>
+
+        <!-- PRODUCT SELECTOR (hidden on landing) -->
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 24px;" id="productSelectorWrapper">
+            <div class="product-selector" id="productSelector"></div>
+        </div>
+
+        <!-- NAVIGATION TABS (hidden on landing) -->
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 24px;" id="navWrapper">
+            <div class="nav-tabs" id="navTabs"></div>
+        </div>
+    </div>
+
+    <!-- LANDING PAGE -->
+    <div id="landingPage" class="landing-page active">
+    <div class="landing-hero">
+            <h2>Portal de Acceso Vascular</h2>
+            <p>Herramientas de ventas completas, especificaciones técnicas y recursos clínicos para 7 líneas de productos</p>
+        </div>
+
+        <div class="products-landing-grid" id="landingGrid">
+                <div class="product-card-landing" onclick="selectProduct('picc')">
+                    <span class="product-badge">12 Variantes</span>
+                    <h3>PICC</h3>
+                    <p>Catéter Central Periférico</p>
+                    <p style="font-size: 13px; color: #9ca3af; margin: 16px 0;">Línea completa de cateteres PICC con compatibilidad CT en todas las configuraciones.</p>
+                    <span class="cta">Ver Portal → </span>
+                </div>
+            
+                <div class="product-card-landing" onclick="selectProduct('puertos-implantables')">
+                    <span class="product-badge">Acceso permanente</span>
+                    <h3>Puertos Implantables</h3>
+                    <p>Puerto de Acceso Venoso Implantable</p>
+                    <p style="font-size: 13px; color: #9ca3af; margin: 16px 0;">Puertos de acceso venoso completamente implantables para terapias a largo plazo.</p>
+                    <span class="cta">Ver Portal → </span>
+                </div>
+            
+                <div class="product-card-landing" onclick="selectProduct('cvc-clasicos')">
+                    <span class="product-badge">Configuraciones estándar</span>
+                    <h3>CVC Clásicos</h3>
+                    <p>Catéteres Venosos Centrales Clásicos</p>
+                    <p style="font-size: 13px; color: #9ca3af; margin: 16px 0;">Línea estándar de CVC con opciones de acceso simple y múltiple.</p>
+                    <span class="cta">Ver Portal → </span>
+                </div>
+            
+                <div class="product-card-landing" onclick="selectProduct('cvc-premium')">
+                    <span class="product-badge">Características avanzadas</span>
+                    <h3>CVC Premium</h3>
+                    <p>Catéteres Venosos Centrales Premium</p>
+                    <p style="font-size: 13px; color: #9ca3af; margin: 16px 0;">Línea premium con características avanzadas y recubrimientos especiales.</p>
+                    <span class="cta">Ver Portal → </span>
+                </div>
+            
+                <div class="product-card-landing" onclick="selectProduct('hemo-corto-plazo')">
+                    <span class="product-badge">Diálisis aguda</span>
+                    <h3>Catéteres de Hemodiálisis — Corto Plazo</h3>
+                    <p>Catéteres de Hemodiálisis a Corto Plazo</p>
+                    <p style="font-size: 13px; color: #9ca3af; margin: 16px 0;">Soluciones de acceso vascular para diálisis aguda y emergencias.</p>
+                    <span class="cta">Ver Portal → </span>
+                </div>
+            
+                <div class="product-card-landing" onclick="selectProduct('hemo-largo-plazo')">
+                    <span class="product-badge">Diálisis crónica</span>
+                    <h3>Catéteres de Hemodiálisis — Largo Plazo</h3>
+                    <p>Catéteres de Hemodiálisis a Largo Plazo</p>
+                    <p style="font-size: 13px; color: #9ca3af; margin: 16px 0;">Acceso vascular duradero y confiable para diálisis crónica.</p>
+                    <span class="cta">Ver Portal → </span>
+                </div>
+            
+                <div class="product-card-landing" onclick="selectProduct('picc-neonatal')">
+                    <span class="product-badge">Tamaños pediátricos</span>
+                    <h3>PICC Neonatal</h3>
+                    <p>PICC Pediátrico y Neonatal</p>
+                    <p style="font-size: 13px; color: #9ca3af; margin: 16px 0;">Línea especializada para acceso vascular en neonatos e infantes.</p>
+                    <span class="cta">Ver Portal → </span>
+                </div>
+            </div>
+    </div>
+
+    <!-- PORTAL CONTAINER -->
+    <div id="portalContainer" class="container" style="display: none;">
+        <!-- Sections will be dynamically populated here -->
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <img src="https://static.wixstatic.com/media/3e6737_7bdd0c3a8fdc4da9a4701faef3569064~mv2.png/v1/fill/w_127,h_89,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/kudu_4x.png" alt="Taté Medical Logo">
+        <p class="tagline">Taté Medical Ltd.</p>
+        <p>Conectando mercados lucrativos desde 2014</p>
+        <p class="contact">11 Shderot Nesiye Yisrael, Karmiel, Israel | +972 (0)4 672 7440</p>
+        <p class="contact">© 2024 Taté Medical. Todos los derechos reservados.</p>
+    </div>
+
+    <script>
+        // ============================================
+        // PRODUCT DATA STRUCTURE
+        // ============================================
+        const portalData = {
+            products: [
+                {
+                    id: 'picc',
+                    name: 'PICC',
+                    label: 'Catéter Central Periférico',
+                    description: 'Línea completa de cateteres PICC con compatibilidad CT en todas las configuraciones.',
+                    badge: '12 Variantes',
+                    specs: [
+                        { code: 'KP-CTSL-0355-KOD', type: 'Simple', size: '3Fr', lumens: 1, flow: '400 ml/hr', priming: '0.40 ml', kit: 'OD' },
+                        { code: 'KP-CTSL-0455-KOD', type: 'Simple', size: '4Fr', lumens: 1, flow: '800 ml/hr', priming: '0.90 ml', kit: 'OD' },
+                        // Add remaining 10 specs...
+                    ],
+                    tabs: {
+                        productos: {
+                            title: 'Productos y Especificaciones',
+                            content: 'placeholder' // 'placeholder' or 'table' or 'html'
+                        },
+                        webinars: {
+                            title: 'Capacitaciones',
+                            hasContent: false,
+                            placeholder: 'Sesiones de capacitación en vivo'
+                        },
+                        video: {
+                            title: 'Video del Producto',
+                            hasContent: false,
+                            placeholder: 'Videos de demostración y técnica de inserción'
+                        },
+                        intro: {
+                            title: 'Intro de Ventas',
+                            hasContent: false,
+                            placeholder: 'Presentación de ventas y propuesta de valor'
+                        },
+                        brochure: {
+                            title: 'Folleto',
+                            hasContent: false,
+                            placeholder: 'Folleto PDF con especificaciones completas'
+                        },
+                        clinical: {
+                            title: 'Resumen Clínico y Estudios',
+                            hasContent: false,
+                            placeholder: 'Resúmenes clínicos y estudios de caso'
+                        },
+                        resources: {
+                            title: 'Otros Recursos',
+                            hasContent: false,
+                            placeholder: 'Guías técnicas, manuales y materiales adicionales'
+                        }
+                    }
+                },
+                {
+                    id: 'puertos-implantables',
+                    name: 'Puertos Implantables',
+                    label: 'Puerto de Acceso Venoso Implantable',
+                    description: 'Puertos de acceso venoso completamente implantables para terapias a largo plazo.',
+                    badge: 'Acceso permanente',
+                    specs: [],
+                    tabs: {
+                        productos: { title: 'Productos y Especificaciones', hasContent: false, placeholder: 'Especificaciones técnicas de productos' },
+                        webinars: { title: 'Capacitaciones', hasContent: false, placeholder: 'Sesiones de capacitación' },
+                        video: { title: 'Video del Producto', hasContent: false, placeholder: 'Videos de demostración' },
+                        intro: { title: 'Intro de Ventas', hasContent: false, placeholder: 'Presentación para ventas' },
+                        brochure: { title: 'Folleto', hasContent: false, placeholder: 'Folleto informativo' },
+                        clinical: { title: 'Resumen Clínico y Estudios', hasContent: false, placeholder: 'Información clínica' },
+                        resources: { title: 'Otros Recursos', hasContent: false, placeholder: 'Recursos adicionales' }
+                    }
+                },
+                {
+                    id: 'cvc-clasicos',
+                    name: 'CVC Clásicos',
+                    label: 'Catéteres Venosos Centrales Clásicos',
+                    description: 'Línea estándar de CVC con opciones de acceso simple y múltiple.',
+                    badge: 'Configuraciones estándar',
+                    specs: [],
+                    tabs: {
+                        productos: { title: 'Productos y Especificaciones', hasContent: false, placeholder: 'Especificaciones técnicas de productos' },
+                        webinars: { title: 'Capacitaciones', hasContent: false, placeholder: 'Sesiones de capacitación' },
+                        video: { title: 'Video del Producto', hasContent: false, placeholder: 'Videos de demostración' },
+                        intro: { title: 'Intro de Ventas', hasContent: false, placeholder: 'Presentación para ventas' },
+                        brochure: { title: 'Folleto', hasContent: false, placeholder: 'Folleto informativo' },
+                        clinical: { title: 'Resumen Clínico y Estudios', hasContent: false, placeholder: 'Información clínica' },
+                        resources: { title: 'Otros Recursos', hasContent: false, placeholder: 'Recursos adicionales' }
+                    }
+                },
+                {
+                    id: 'cvc-premium',
+                    name: 'CVC Premium',
+                    label: 'Catéteres Venosos Centrales Premium',
+                    description: 'Línea premium con características avanzadas y recubrimientos especiales.',
+                    badge: 'Características avanzadas',
+                    specs: [],
+                    tabs: {
+                        productos: { title: 'Productos y Especificaciones', hasContent: false, placeholder: 'Especificaciones técnicas de productos' },
+                        webinars: { title: 'Capacitaciones', hasContent: false, placeholder: 'Sesiones de capacitación' },
+                        video: { title: 'Video del Producto', hasContent: false, placeholder: 'Videos de demostración' },
+                        intro: { title: 'Intro de Ventas', hasContent: false, placeholder: 'Presentación para ventas' },
+                        brochure: { title: 'Folleto', hasContent: false, placeholder: 'Folleto informativo' },
+                        clinical: { title: 'Resumen Clínico y Estudios', hasContent: false, placeholder: 'Información clínica' },
+                        resources: { title: 'Otros Recursos', hasContent: false, placeholder: 'Recursos adicionales' }
+                    }
+                },
+                {
+                    id: 'hemo-corto-plazo',
+                    name: 'Catéteres de Hemodiálisis — Corto Plazo',
+                    label: 'Catéteres de Hemodiálisis a Corto Plazo',
+                    description: 'Soluciones de acceso vascular para diálisis aguda y emergencias.',
+                    badge: 'Diálisis aguda',
+                    specs: [],
+                    tabs: {
+                        productos: { title: 'Productos y Especificaciones', hasContent: false, placeholder: 'Especificaciones técnicas de productos' },
+                        webinars: { title: 'Capacitaciones', hasContent: false, placeholder: 'Sesiones de capacitación' },
+                        video: { title: 'Video del Producto', hasContent: false, placeholder: 'Videos de demostración' },
+                        intro: { title: 'Intro de Ventas', hasContent: false, placeholder: 'Presentación para ventas' },
+                        brochure: { title: 'Folleto', hasContent: false, placeholder: 'Folleto informativo' },
+                        clinical: { title: 'Resumen Clínico y Estudios', hasContent: false, placeholder: 'Información clínica' },
+                        resources: { title: 'Otros Recursos', hasContent: false, placeholder: 'Recursos adicionales' }
+                    }
+                },
+                {
+                    id: 'hemo-largo-plazo',
+                    name: 'Catéteres de Hemodiálisis — Largo Plazo',
+                    label: 'Catéteres de Hemodiálisis a Largo Plazo',
+                    description: 'Acceso vascular duradero y confiable para diálisis crónica.',
+                    badge: 'Diálisis crónica',
+                    specs: [],
+                    tabs: {
+                        productos: { title: 'Productos y Especificaciones', hasContent: false, placeholder: 'Especificaciones técnicas de productos' },
+                        webinars: { title: 'Capacitaciones', hasContent: false, placeholder: 'Sesiones de capacitación' },
+                        video: { title: 'Video del Producto', hasContent: false, placeholder: 'Videos de demostración' },
+                        intro: { title: 'Intro de Ventas', hasContent: false, placeholder: 'Presentación para ventas' },
+                        brochure: { title: 'Folleto', hasContent: false, placeholder: 'Folleto informativo' },
+                        clinical: { title: 'Resumen Clínico y Estudios', hasContent: false, placeholder: 'Información clínica' },
+                        resources: { title: 'Otros Recursos', hasContent: false, placeholder: 'Recursos adicionales' }
+                    }
+                },
+                {
+                    id: 'picc-neonatal',
+                    name: 'PICC Neonatal',
+                    label: 'PICC Pediátrico y Neonatal',
+                    description: 'Línea especializada para acceso vascular en neonatos e infantes.',
+                    badge: 'Tamaños pediátricos',
+                    specs: [],
+                    tabs: {
+                        productos: { title: 'Productos y Especificaciones', hasContent: false, placeholder: 'Especificaciones técnicas de productos' },
+                        webinars: { title: 'Capacitaciones', hasContent: false, placeholder: 'Sesiones de capacitación' },
+                        video: { title: 'Video del Producto', hasContent: false, placeholder: 'Videos de demostración' },
+                        intro: { title: 'Intro de Ventas', hasContent: false, placeholder: 'Presentación para ventas' },
+                        brochure: { title: 'Folleto', hasContent: false, placeholder: 'Folleto informativo' },
+                        clinical: { title: 'Resumen Clínico y Estudios', hasContent: false, placeholder: 'Información clínica' },
+                        resources: { title: 'Otros Recursos', hasContent: false, placeholder: 'Recursos adicionales' }
+                    }
+                }
+            ]
+        };
+
+        let currentProduct = null;
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        function init() {
+            renderLandingPage();
+        }
+
+        // ============================================
+        // LANDING PAGE
+        // ============================================
+        function renderLandingPage() {
+            const grid = document.getElementById('landingGrid');
+            grid.innerHTML = portalData.products.map(product => `
+                <div class="product-card-landing" onclick="selectProduct('${product.id}')">
+                    <span class="product-badge">${product.badge}</span>
+                    <h3>${product.name}</h3>
+                    <p>${product.label}</p>
+                    <p style="font-size: 13px; color: #9ca3af; margin: 16px 0;">${product.description}</p>
+                    <span class="cta">Ver Portal → </span>
+                </div>
+            `).join('');
+        }
+
+        // ============================================
+        // PRODUCT SELECTION
+        // ============================================
+        function selectProduct(productId) {
+            currentProduct = portalData.products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            // Hide landing, show portal
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('portalContainer').style.display = 'block';
+            document.getElementById('navWrapper').style.display = 'block';
+            document.getElementById('productSelectorWrapper').style.display = 'block';
+
+            // Update header
+            document.getElementById('headerTitle').innerHTML = `
+                <h1>${currentProduct.name}</h1>
+                <p>${currentProduct.label} — Taté Medical</p>
+            `;
+
+            // Render product selector
+            renderProductSelector();
+
+            // Render nav tabs
+            renderNavTabs();
+
+            // Render content sections
+            renderSections();
+
+            // Activate first tab
+            switchTab('productos');
+        }
+
+        function renderProductSelector() {
+            const selector = document.getElementById('productSelector');
+            selector.innerHTML = portalData.products.map(product => `
+                <button 
+                    class="product-selector-btn ${product.id === currentProduct.id ? 'active' : ''}"
+                    onclick="selectProduct('${product.id}')">
+                    ${product.name}
+                </button>
+            `).join('');
+        }
+
+        function renderNavTabs() {
+            const tabs = document.getElementById('navTabs');
+            const tabKeys = Object.keys(currentProduct.tabs);
+            tabs.innerHTML = tabKeys.map(key => `
+                <button 
+                    class="nav-tab ${key === 'productos' ? 'active' : ''}"
+                    data-tab="${key}"
+                    onclick="switchTab('${key}')">
+                    ${currentProduct.tabs[key].title}
+                </button>
+            `).join('');
+        }
+
+        function renderSections() {
+            const container = document.getElementById('portalContainer');
+            const tabKeys = Object.keys(currentProduct.tabs);
+            
+            container.innerHTML = tabKeys.map(key => {
+                const tab = currentProduct.tabs[key];
+                return `
+                    <div id="section-${key}" class="section">
+                        <h2 class="section-title">${tab.title}</h2>
+                        <div id="content-${key}"></div>
+                    </div>
+                `;
+            }).join('');
+
+            // Populate content for each tab
+            tabKeys.forEach(key => {
+                const tab = currentProduct.tabs[key];
+                const contentDiv = document.getElementById(`content-${key}`);
+                
+                if (key === 'productos' && currentProduct.specs.length > 0) {
+                    // Render specs table
+                    contentDiv.innerHTML = renderSpecsTable();
+                } else if (tab.hasContent === false) {
+                    // Render placeholder
+                    contentDiv.innerHTML = `
+                        <div class="placeholder-box">
+                            <h4>Contenido pendiente</h4>
+                            <p>${tab.placeholder}</p>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        function renderSpecsTable() {
+            if (currentProduct.specs.length === 0) {
+                return `
+                    <div class="placeholder-box">
+                        <h4>Especificaciones de productos</h4>
+                        <p>Tabla de especificaciones técnicas</p>
+                    </div>
+                `;
+            }
+
+            const headers = Object.keys(currentProduct.specs[0]);
+            return `
+                <table class="specs-table">
+                    <thead>
+                        <tr>
+                            ${headers.map(h => `<th>${h}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${currentProduct.specs.map(spec => `
+                            <tr>
+                                ${headers.map(h => `<td>${spec[h]}</td>`).join('')}
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // ============================================
+        // TAB SWITCHING
+        // ============================================
+        function switchTab(tabKey) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Deactivate all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show active section
+            document.getElementById(`section-${tabKey}`).classList.add('active');
+
+            // Activate clicked tab
+            document.querySelector(`[data-tab="${tabKey}"]`).classList.add('active');
+        }
+
+        // ============================================
+        // GO BACK TO LANDING
+        // ============================================
+        function goToLanding() {
+            currentProduct = null;
+            document.getElementById('landingPage').style.display = 'block';
+            document.getElementById('portalContainer').style.display = 'none';
+            document.getElementById('navWrapper').style.display = 'none';
+            document.getElementById('productSelectorWrapper').style.display = 'none';
+            
+            document.getElementById('headerTitle').innerHTML = `
+                <h1>Portal Acceso Vascular</h1>
+                <p>Taté Medical — Conectando mercados lucrativos</p>
+            `;
+
+            // Re-render landing in case products changed
+            renderLandingPage();
+        }
+
+        // ============================================
+        // UTILITIES
+        // ============================================
+        function downloadHTML() {
+            const html = document.documentElement.outerHTML;
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'portal_acceso_vascular.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+
+
+</body></html>
